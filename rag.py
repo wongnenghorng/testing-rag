@@ -16,14 +16,14 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 chunks = text_splitter.split_documents(documents)
 
 # 3. 使用 Ollama 的 Embedding 模型
-embedding_model = OllamaEmbeddings(model="hf.co/Wonghehehe/model:latest")  # 适用于 Ollama 的嵌入模型
+embedding_model = OllamaEmbeddings(model="hf.co/bartowski/Llama-3.2-1B-Instruct-GGUF:IQ4_XS")  # 适用于 Ollama 的嵌入模型
 
 # 4. 创建 FAISS 向量数据库
 vector_db = FAISS.from_documents(chunks, embedding_model)
 
 # 5. 初始化 LLM
 # Initialize the model
-model = OllamaLLM(model="hf.co/Wonghehehe/model:latest")
+model = OllamaLLM(model="hf.co/bartowski/Llama-3.2-1B-Instruct-GGUF:IQ4_XS")
 
 # 6. 创建 RAG 处理链
 retriever = vector_db.as_retriever()
